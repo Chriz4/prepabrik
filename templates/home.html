@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<br><br>
+
+<div class="container">
+    <h3>Lihat Semua Log Produksi</h3>
+    <div class="row">
+        {% for barang in list_barang %}
+        <div class="col-md 4">
+            <div class="card">
+                <div class="card-body">
+                    <h3>{{ barang.barang }}</h3>
+                    <p class="card-text">
+                        {{ barang.waktu }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+    <br><hr><br>
+
+    <h3>Lihat Semua Log Produksi</h3>
+    <div class="row">
+            <div class="col-md 4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Log Penjualan 1</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md 4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Log Penjualan 2</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md 4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Log Penjualan 3</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+{% endblock %}
