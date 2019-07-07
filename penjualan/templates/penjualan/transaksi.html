@@ -2,9 +2,27 @@
 
 {% block content %}
     <form action="." method="POST"> {% csrf_token %}
+        {% for brg in barang %}
+            <div class="form-group">
+                <label for="barang{{ brg.id }}">{{ brg.nama }}</label>
+                <input type="number" name="barang{{ brg.id }}" id="barang{{ brg.id }}" class="form-control" oninput="Hitung({{ brg.harga }}, {{ brg.id }})">
+            </div>
+            <div class="form-group">
+                <label for="harga">Harga</label>
+                <input type="number" name="harga{{ brg.id }}" id="harga{{ brg.id }}" class="form-control" disabled>
+            </div>
+        {% endfor %}
         <div class="form-group">
-            
+            <label for="pembeli">Pembeli</label>
+            <input type="text" name="pembeli" id="pembeli" class="form-control">
         </div>
-        <button type="submit" class="btn btn-success">Send</button>
+        <div class="form-group">
+            <label for="telp">Nomor Telpon</label>
+            <input type="text" name="telp" id="telp" class="form-control">
+        </div>
+        
+        <button onclick="coba()" id="tombol" class="btn btn-success">Send</button>
     </form>
+    <script>
+    </script>
 {% endblock %}

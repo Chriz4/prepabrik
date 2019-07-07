@@ -11,6 +11,12 @@ class DaftarBarang(models.Model):
         return self.nama
 
 
+# class log_beli(models.Model):
+#     barang = models.ForeignKey(DaftarBarang, on_delete=models.SET_NULL, null=True)
+#     jumlah = models.IntegerField()
+#     pembeli = models.OneToOneField()
+
+
 class Transaksi(models.Model):
     barang = models.ForeignKey(
         DaftarBarang,
