@@ -1,35 +1,39 @@
 from django.db import models
 from django.utils import timezone
-from django.urls import reverse
+
+import datetime
 
 # Create your models here.
-class DaftarBarang(models.Model):
-    nama = models.TextField(max_length=30)
+class Barang(models.Model):
+    nama = models.CharField(max_length=20)
     harga = models.IntegerField()
+    jumlah = models.IntegerField()
 
     def __str__(self):
         return self.nama
 
 
-# class log_beli(models.Model):
-#     barang = models.ForeignKey(DaftarBarang, on_delete=models.SET_NULL, null=True)
-#     jumlah = models.IntegerField()
-#     pembeli = models.OneToOneField()
+class Kasir(models.Model):
+    nama = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.nama
+        
 
 class Transaksi(models.Model):
-    barang = models.ForeignKey(
-        DaftarBarang,
-        on_delete=models.CASCADE
-    )
-    pembeli = models.CharField(max_length=30)
-    telp = models.CharField(max_length=20)
-    jumlah = models.IntegerField()
-    harga = models.BigIntegerField()
-    waktu = models.DateTimeField(null=True, blank=True, default=timezone.now)
+    now = datetime.datetime.now()
+    user = models.ForeignKey(Kasir, on_delete=models.CASCADE)
+    pembeli = models.CharField(max_length=20)
+    disetujui = models.CharField(max_length=20)
+    dibayar = models.CharField(max_length=20)
+    total = models.BigIntegerField(default=0, null=True, blank=True)
+    waktu = models.DateTimeField(default=now)
 
     def __str__(self):
         return self.pembeli
 
-    def get_absolute_url(self):
-        return reverse('penjualan')
+class Pesan(models.Model):
+    barang = models.ForeignKey(Barang, on_delete=models.SET_NULL, null=True)
+    jumlah = models.IntegerField()
+    harga = models.BigIntegerField(default=0, null=True, blank=True)
+    transaksi = models.ForeignKey(Transaksi, on_delete=models.CASCADE)

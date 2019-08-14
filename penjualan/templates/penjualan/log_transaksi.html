@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+    <h1>Log produksi</h1>
+    <br><hr><br>
+    <div class="text-right">
+      <button class="btn btn-outline-info"><a href="{% url 'transaksi' %}">Buat Transaksi</a></button>
+    </div><br>
+    <table class="table">
+  <thead>
+    <tr>
+        <th>Transaksi</th>
+        <th scope="col">User</th>
+        <th scope="col">Waktu</th>
+        <th scope="col">Total</th>
+        <th scope="col">Disetujui</th>
+        <th scope="col">Dibayar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for log in logs %}
+    <tr>
+      <td><a href="{% url 'pesanan' log.id %}">{{ log.id }}</a></td>
+      <td>{{ log.user }}</td>
+      <td>{{ log.waktu|date:"F d, Y" }}</td>
+      <td>{{ log.total }}</td>
+      <td>{{ log.disetujui }}</td>
+      <td>{{ log.dibayar }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

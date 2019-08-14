@@ -1,28 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="." method="POST"> {% csrf_token %}
-        {% for brg in barang %}
-            <div class="form-group">
-                <label for="barang{{ brg.id }}">{{ brg.nama }}</label>
-                <input type="number" name="barang{{ brg.id }}" id="barang{{ brg.id }}" class="form-control" oninput="Hitung({{ brg.harga }}, {{ brg.id }})">
-            </div>
-            <div class="form-group">
-                <label for="harga">Harga</label>
-                <input type="number" name="harga{{ brg.id }}" id="harga{{ brg.id }}" class="form-control" disabled>
-            </div>
-        {% endfor %}
+    <h1>1 form for transaksi</h1>
+    <form method="post">
+        {% csrf_token %}
         <div class="form-group">
-            <label for="pembeli">Pembeli</label>
-            <input type="text" name="pembeli" id="pembeli" class="form-control">
+            <label for="kasir">Anda Masuk Sebagai</label>
+            <input type="text" name="kasir" id="kasir" class="form-control" value="{{ user }}" readonly>
         </div>
         <div class="form-group">
-            <label for="telp">Nomor Telpon</label>
-            <input type="text" name="telp" id="telp" class="form-control">
+            <label for="pembeli">Nama Pembeli</label>
+            <input type="text" name="pembeli" id="pembeli" class="form-control" required>
         </div>
-        
-        <button onclick="coba()" id="tombol" class="btn btn-success">Send</button>
+        <div class="form-group">
+            <label for="penyetuju">Disetujui Oleh</label>
+            <input type="text" name="penyetuju" id="penyetuju" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="dibayar">Dibayar Oleh</label>
+            <input type="text" name="dibayar" id="dibayar" class="form-control" required>
+        </div>
+        <div class="form-group">
+            {% for item in list_barang %}
+                <label for="barang{{ item.id }}">{{ item.nama }}</label>
+                <input class="form-control" type="number" name="barang{{ item.id }}" id="barang{{ item.id }}" placeholder="jumlah" required>
+            {% endfor %}
+        </div>
+        <button class="btn btn-outline-info">Tambah</button>
     </form>
-    <script>
-    </script>
 {% endblock %}

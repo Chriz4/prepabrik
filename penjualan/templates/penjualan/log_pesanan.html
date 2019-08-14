@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Log Pesanan</h2>
+    <br><hr>
+    <h3>Nama Pembeli : {{ selected_tran.pembeli }}</h3>
+    <br>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nama</th>
+            <th scope="col">Barang</th>
+            <th scope="col">Jumlah</th>
+            <th scope="col">Harga</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pesan in pesanan %}
+        <tr>
+            <td>{{ pesan.transaksi__user__nama }}</td>
+            <td>{{ pesan.barang__nama }}</td>
+            <td>{{ pesan.jumlah }}</td>
+            <td>{{ pesan.harga }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2">Total Harga</td>
+            <td colspan="2">{{ selected_tran.total }}</td>
+        </tr>
+  </tbody>
+</table>
+
+{% endblock %}

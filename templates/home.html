@@ -2,17 +2,19 @@
 
 {% block content %}
 
-<h1>{{ title }}</h1>
+<!-- <h1>{{ title }}</h1> -->
 <br><br>
 
 <div class="container">
-    <h3>Lihat Semua Log Produksi</h3>
+    <a href="{% url 'produksi' %}"><h3>Lihat Semua Log Produksi</h3></a>
     <div class="row">
         {% for barang in list_barang %}
         <div class="col-md 4">
-            <div class="card">
+            <div class="card bg-info text-white">
                 <div class="card-body">
                     <h3>{{ barang.barang }}</h3>
+                </div>
+                <div class="card-footer">
                     <p class="card-text">
                         {{ barang.waktu }}
                     </p>
@@ -25,30 +27,21 @@
 
     <br><hr><br>
 
-    <h3>Lihat Semua Log Produksi</h3>
+    <a href="{% url 'penjualan' %}"><h3>Lihat Semua Log Produksi</h3></a>
     <div class="row">
-            <div class="col-md 4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Log Penjualan 1</h3>
-                    </div>
+        {% for jual in list_jual %}
+        <div class="col-md 4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h3>{{ jual.pembeli }}</h3>
                 </div>
-            </div>
-            <div class="col-md 4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Log Penjualan 2</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md 4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Log Penjualan 3</h3>
-                    </div>
+                <div class="card-footer">
+                    <p class="card-text">{{ jual.waktu }}</p>
                 </div>
             </div>
         </div>
+        {% endfor %}
+    </div>
 
 </div>
 
