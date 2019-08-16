@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'produksi',
     'penjualan',
     'crispy_forms',
-    'wkhtmltopdf',
+    # 'wkhtmltopdf',
 ]
 
 MIDDLEWARE = [
